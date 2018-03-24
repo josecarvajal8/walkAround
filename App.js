@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Scene, Router } from 'react-native-router-flux';
-import  Home  from './pages/home';
+import  Home  from './src/pages/home';
 import {
   Platform,
   StyleSheet,

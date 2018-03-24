@@ -6,7 +6,7 @@ class Home extends Component {
         return(
         <View>
             <Text>
-                Hola
+                Hola mundo
             </Text>
         </View>
         )
