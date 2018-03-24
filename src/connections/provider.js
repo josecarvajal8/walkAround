@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 
-const activitiesPath = '/places/'
-const participantsPath = '/comments/'
+const activitiesPath = '/activities/'
+const participantsPath = '/participants/'
 
 
 class Provider{
@@ -32,14 +32,32 @@ static createActivity( name, description, date, hour, ubication, creator) {
                 ubication: ubication,
                 creator:creator          
         }
-               
-        firebase.database().ref(activitiesPath + activityId).push(activityData).then(() => {
+       // firebase.database().ref(activitiesPath + activityId).push(activityData).then(() => { 
+        firebase.database().ref(activitiesPath).push(activityData).then(() => {
             resolve();
         }, err => {
             reject(err);
         });
     });
 }
+
+static joinActivity( activityId, name, telefono, email) {
+    return new Promise((resolve, reject) => {
+        let participants={}
+            participants={ 
+                name: name,
+                telefono: telefono,
+                email:email        
+        }
+       // firebase.database().ref(activitiesPath + activityId).push(activityData).then(() => { 
+        firebase.database().ref(participantsPath + activityId).push(participants).then(() => {
+            resolve();
+        }, err => {
+            reject(err);
+        });
+    });
+}
+
 
 static buildArray(firebaseData) {
     let arrayData = [];
